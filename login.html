@@ -1,31 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
 <script src="https://www.parsecdn.com/js/parse-1.2.12.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
 <script src="http://www.parsecdn.com/js/parse-1.2.12.min.js"></script>
-<meta charset=utf-8 />
-<title>Example</title>
+    <link href="css/signin.css" rel="stylesheet">
+    
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Jumbotron-->
+       <link href="jumbotron-narrow.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<title>User Log-in</title>
 </head>
 <body ng-app="AuthApp">
+   <div class="container">
     <div>
-        <h1> Stfu</h1>
-        <p> Ingresa tus datos plox, es para logearte a tu bainder locochon</p>
+        <h2 class="form-signin-heading"> Ingresa tus datos plox, es para logearte a tu bainder locochon</h2>
     </div>
   <div ng-hide="currentUser">    
-    <form ng-show="scenario == 'Log in'">
+    <form class="form-signin" ng-show="scenario == 'Log in'">
       <h2>Log in</h2>
-      Username: <input type="text" ng-model="user.username" /><br />
-      Password: <input type="password" ng-model="user.password" /><br />
+      <label for="inputEmail" class="sr-only">Email address</label>
+      Username: <input id="inputEmail" class="form-control" placeholder="Username" type="text" ng-model="user.username"  required autofocus /><br />
+      Password: <input type="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="user.password" required /><br />
       <button ng-click="logIn(user)">Log in</button>
       or <a href="#" ng-click='scenario="Sign up"'>Sign up</a>
     </form>
-    <form ng-show="scenario == 'Sign up'">
+    <form class="form-signin" ng-show="scenario == 'Sign up'">
       <h2>Sign up</h2>
-      Email: <input type="email" ng-model="user.email" /><br />
-      Username: <input type="text" ng-model="user.username" /><br />
-      Password: <input type="password" ng-model="user.password" /><br />
+      Email: <input type="email" class="form-control" placeholder="Username" ng-model="user.email" required autofocus/><br />
+      Username: <input type="text" class="form-control" placeholder="Email address" ng-model="user.username" required /><br />
+      Password: <input type="password" class="form-control" placeholder="Password" ng-model="user.password" required /><br />
       <button ng-click="signUp(user)">Sign up</button>
       or <a href="#" ng-click='scenario="Log in"'>Log in</a>
     </form>
@@ -36,6 +51,9 @@
     <p> You have been successfully logged in</p>
     <button ng-click="logOut(user)">Log out</button>
   </div>
+</div> <!--container-->
+    
+    
     <script type="text/javascript">
         Parse.initialize("YJwHjwYF08scjC2SEdl9Ve2YFB3056FQfkUgGu8p", "awDPDR2YNfZNtbJ54VzEZPiWJZmLekU8qkJxnlOw");
 
