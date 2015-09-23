@@ -38,8 +38,8 @@
     </form>
     <form class="form-signin" ng-show="scenario == 'Sign up'">
       <h2>Sign up</h2>
-      Email: <input type="email" class="form-control" placeholder="Username" ng-model="user.email" required autofocus/><br />
-      Username: <input type="text" class="form-control" placeholder="Email address" ng-model="user.username" required /><br />
+      Email: <input type="email" class="form-control" placeholder="Email address" ng-model="user.email" required autofocus/><br />
+      Username: <input type="text" class="form-control" placeholder="Usarname" ng-model="user.username" required /><br />
       Password: <input type="password" class="form-control" placeholder="Password" ng-model="user.password" required /><br />
       <button ng-click="signUp(user)">Sign up</button>
       or <a href="#" ng-click='scenario="Log in"'>Log in</a>
