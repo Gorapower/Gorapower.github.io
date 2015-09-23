@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-<script src="https://www.parsecdn.com/js/parse-1.2.12.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-<script src="http://www.parsecdn.com/js/parse-1.2.12.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="https://www.parsecdn.com/js/parse-1.2.12.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="http://www.parsecdn.com/js/parse-1.2.12.min.js"></script>
     <link href="css/signin.css" rel="stylesheet">
     
     <!-- Bootstrap -->
@@ -24,9 +24,9 @@
 </head>
 <body ng-app="AuthApp">
    <div class="container">
-    <div>
-         <!--<h1 class="form-signin-heading"> MyBindr</h1>-->
-    </div>
+    
+        <!--<h1 class="form-signin-heading"> MyBindr</h1>-->
+    
   <div ng-hide="currentUser">    
     <form class="form-signin" ng-show="scenario == 'Log in'">
       <h2>Log in</h2>
@@ -39,7 +39,7 @@
     <form class="form-signin" ng-show="scenario == 'Sign up'">
       <h2>Sign up</h2>
       Email: <input type="email" class="form-control" placeholder="Email address" ng-model="user.email" required autofocus/><br />
-      Username: <input type="text" class="form-control" placeholder="Usarname" ng-model="user.username" required /><br />
+      Username: <input type="text" class="form-control" placeholder="Username" ng-model="user.username" required /><br />
       Password: <input type="password" class="form-control" placeholder="Password" ng-model="user.password" required /><br />
       <button ng-click="signUp(user)">Sign up</button>
       or <a href="#" ng-click='scenario="Log in"'>Log in</a>
@@ -47,8 +47,12 @@
   </div>
   
   <div ng-show="currentUser">
-    <h1>Welcome {{currentUser.get('username')}}</h1>
-    <p> You have been successfully logged in</p>
+    <script>
+    var currentUser = Parse.User.current();
+    if (currentUser) {
+      document.location.href = "loggedin.html";
+    }
+    </script>
     <button ng-click="logOut(user)">Log out</button>
   </div>
 </div> <!--container-->
@@ -84,6 +88,7 @@ angular.module('AuthApp', [])
       success: function(user) {
         $scope.currentUser = user;
         $scope.$apply();
+        document.location.href = "loggedin.html";
       },
       error: function(user, error) {
         alert("Unable to log in: " + error.code + " " + error.message);

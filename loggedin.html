@@ -22,26 +22,44 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
+  <body ng-app="AuthApp">
   <div class="container">
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="login.html">Log-In</a></li>
-            <li role="presentation"><a href="signup.html">Sign-Up</a></li>
+            <!-- <li role="presentation" class="active"><a href="login.html">Log-In</a></li> -->
+            <li role="presentation">{{currentUser.get('username')}}</li>
             
           </ul>
         </nav>
         <h3 class="text-muted">MyBindr</h3>
       </div>
 
-      <div class="jumbotron">
+      <div class="jumbotron" ng-hide="currentUser">
         <h1>Create your own Binder </h1>
         <p class="lead">Create and edit binders to trade, buy, sell TCG cards and more.</p>
         <p> <input type="text" class="form-control" placeholder="I still don't work"> </p>
         <p><a class="btn btn-lg btn-success" href="signup.html" role="button">Sign up today</a></p>
       </div>
+      <div class="jumbotron" ng-show="currentUser">
+        <h1>Welcomeback {{currentUser.get('username')}}</h1>
+        <p class="lead">What are you looking for</p>
+        <p> <input type="text" class="form-control" placeholder="I still don't work"> </p>
+        <button ng-click="logOut(user)">Log out</button>
+      </div>
+ <script type="text/javascript">
+        Parse.initialize("YJwHjwYF08scjC2SEdl9Ve2YFB3056FQfkUgGu8p", "awDPDR2YNfZNtbJ54VzEZPiWJZmLekU8qkJxnlOw");
 
+angular.module('AuthApp', []).run(['$rootScope', function($scope) {
+  $scope.currentUser = Parse.User.current();
+  
+  $scope.logOut = function(form) {
+    Parse.User.logOut();
+    $scope.currentUser = null;
+    document.location.href = "index.html";
+  };
+}]);
+</script>
       
 
       <footer class="footer">
