@@ -8,54 +8,72 @@
     <script src="https://www.parsecdn.com/js/parse-1.2.12.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     <script src="http://www.parsecdn.com/js/parse-1.2.12.min.js"></script>
-    <link href="css/signin.css" rel="stylesheet">
+    <link href="css/offcanvas.css" rel="stylesheet">
     
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Jumbotron-->
-       <link href="css/jumbotron-narrow.css" rel="stylesheet">
+       
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-<title>User Log-in</title>
+<title>Bindr</title>
 </head>
 <body ng-app="AuthApp">
    <div class="container">
+       <nav class="navbar navbar-default">
+           <div class="container-fluid">
+               <div class="navbar-header">
+                   <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-console "navbar">
+                       <span class="sr-only">Toggle navigation</span>
+                       <span class="icon-bar"></span>
+                       <span class="icon-bar"></span>
+                       <span class="icon-bar"></span>
+                   </button>
+                   <a class="navbar-brand" href="loggedin.html">Home</a>
+               </div>
+               <div id="navbar" class="navbar-collapse collapse">
+                   <ul class="nav navbar-nav">
+                       <li class="active"><a>Bindr</a></li>
+                       <li><a>Wants</a></li>
+                       <li><a>Notifications</a></li>
+                       <li><a>Settings</a></li>
+                   </ul>
+                   <ul class="nav navbar-nav navbar-right">
+                       <li class="active"><a>Log out</a></li>
+                   </ul>
+               </div>
+           </div>
+       </nav>
+       <div class="col-xs-12 col-sm-9">
+       <div class="jumbotron">
+           <h1>Carpeta bonita</h1>
+           <p>ORE NO KONO TE GA MAKKA NI MOERU. SHOURI WO TSUKAMETO TODOROKI SAKEBU.</p>
+           <div class="row">
+            <div class="col-xs-4">Card.</div>
+            <div class="col-xs-4">Card.</div>
+            <div class="col-xs-4">Card.</div>
+      </div>
     
-        <!--<h1 class="form-signin-heading"> MyBindr</h1>-->
-    
-  <div ng-hide="currentUser">    
-    <form class="form-signin" ng-show="scenario == 'Log in'">
-      <h2>Log in</h2>
-      <label for="inputEmail" class="sr-only">Email address</label>
-      Username: <input id="inputEmail" class="form-control" placeholder="Username" type="text" ng-model="user.username"  required autofocus /><br />
-      Password: <input type="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="user.password" required /><br />
-      <button ng-click="logIn(user)">Log in</button>
-      or <a href="#" ng-click='scenario="Sign up"'>Sign up</a>
-    </form>
-    <form class="form-signin" ng-show="scenario == 'Sign up'">
-      <h2>Sign up</h2>
-      Email: <input type="email" class="form-control" placeholder="Email address" ng-model="user.email" required autofocus/><br />
-      Username: <input type="text" class="form-control" placeholder="Username" ng-model="user.username" required /><br />
-      Password: <input type="password" class="form-control" placeholder="Password" ng-model="user.password" required /><br />
-      <button ng-click="signUp(user)">Sign up</button>
-      or <a href="#" ng-click='scenario="Log in"'>Log in</a>
-    </form>
-  </div>
+       </div>
+       </div>
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+          <div class="jumbotron">
+              <h3> Card Search</h3>
+              <p> Por aqui sera.</p>
+            
+          </div>
+        </div><!--/.sidebar-offcanvas-->
+      </div><!--/row-->
+       
+       
+       
+        
   
-  <div ng-show="currentUser">
-    <script>
-    var currentUser = Parse.User.current();
-    if (currentUser) {
-      document.location.href = "loggedin.html";
-    }
-    </script>
-    <button ng-click="logOut(user)">Log out</button>
-  </div>
-</div> <!--container-->
+    </div> <!--container-->
     
     
     <script type="text/javascript">
