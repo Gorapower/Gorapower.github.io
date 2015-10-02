@@ -22,9 +22,9 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
+  <body ng-app="islogged">
   <div class="container">
-      <div class="header clearfix">
+      <div class="header clearfix" ng-hide="currentUser">
         <nav>
           <ul class="nav nav-pills pull-right">
             <li role="presentation" class="active"><a href="login.html">Log-In</a></li>
@@ -34,22 +34,51 @@
         </nav>
         <h3 class="text-muted">MyBindr</h3>
       </div>
+      <div class="header clearfix" ng-show="currentUser">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation">{{currentUser.get('username')}}</li>
+            
+          </ul>
+        </nav>
+        <h3 class="text-muted">MyBindr</h3>
+      </div>
 
-      <div class="jumbotron">
+      <div class="jumbotron" ng-hide="currentUser">
         <h1>Create your own Binder </h1>
         <p class="lead">Create and edit binders to trade, buy, sell TCG cards and more.</p>
         <p> <input type="text" class="form-control" placeholder="I still don't work"> </p>
         <p><a class="btn btn-lg btn-success" href="signup.html" role="button">Sign up today</a></p>
       </div>
+      <div class="jumbotron" ng-show="currentUser">
+        <h1>Welcome back {{currentUser.get('username')}}</h1>
+        <p class="lead">What are you looking for</p>
+        <p> <input type="text" class="form-control" placeholder="I still don't work"> </p>
+        <button ng-click="logOut(user)">Log out</button>
+      </div>
 
       
 
       <footer class="footer">
-        <p>&copy; Feeders Inc. 2014</p>
+        <p>&copy; Feeders Inc. 2015</p>
       </footer>
 
     </div> <!-- /container -->
-    
+    <script type="text/javascript">
+        Parse.initialize("8aaaoh6a5ZkjO5SIzzVVtUsFjDBcKsSdUP9lcoIl", "8YxX1Lyyp1iIBE5YEDIZnD8qzRhUg7y1AaSZkTmm");
+
+
+angular.module('islogged', []).run(['$rootScope', function($scope) {
+  $scope.currentUser = Parse.User.current();
+  
+  $scope.logOut = function(form) {
+    Parse.User.logOut();
+    $scope.currentUser = null;
+    document.location.href = "index.html";
+  };
+}]);
+</script>
+
       
       
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
