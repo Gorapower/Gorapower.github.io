@@ -9,12 +9,15 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     <script src="http://www.parsecdn.com/js/parse-1.2.12.min.js"></script>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>MyBindr</title>
-
-    <!-- Bootstrap -->
+    <link href="css/offcanvas.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/jumbotron-narrow.css" rel="stylesheet">
+    <title>MyBindr</title>
+    
+    <!-- Bootstrap -->
+    
     <!-- Jumbotron-->
-       <link href="css/jumbotron-narrow.css" rel="stylesheet">
+       
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -38,10 +41,33 @@
         <nav>
           <ul class="nav nav-pills pull-right">
             <li role="presentation">{{currentUser.get('username')}}</li>
-            
+            <li role="presentation"><button ng-click="logOut(user)">Log out</button></li>
           </ul>
         </nav>
         <h3 class="text-muted">MyBindr</h3>
+
+        <nav class="navbar navbar-default">
+           <div class="container-fluid">
+        <div class="navbar-header">
+                   <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-console "navbar">
+                       <span class="sr-only">Toggle navigation</span>
+                       <span class="icon-bar"></span>
+                       <span class="icon-bar"></span>
+                       <span class="icon-bar"></span>
+                   </button>
+                   
+               </div>
+               <div id="navbar" class="navbar-collapse collapse">
+                   <ul class="nav navbar-nav">
+                       <li><a class="navbar-brand" href="bindr.html">Bindr</a></li>
+                       <li><a class="navbar-brand" href="bindr.html">Wants</a></li>
+                       <li><a class="navbar-brand" href="bindr.html">Notifications</a></li>
+                       <li><a class="navbar-brand" href="bindr.html">Settings</a></li>
+                   </ul>
+
+               </div>
+                </div>
+       </nav>
       </div>
 
       <div class="jumbotron" ng-hide="currentUser">
@@ -54,7 +80,7 @@
         <h1>Welcome back {{currentUser.get('username')}}</h1>
         <p class="lead">What are you looking for</p>
         <p> <input type="text" class="form-control" placeholder="I still don't work"> </p>
-        <button ng-click="logOut(user)">Log out</button>
+
       </div>
 
       
