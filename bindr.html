@@ -53,8 +53,8 @@
            <!-- Image grid-->
            <div class="container">
 
-     <div class="row">
-
+     <div class="row" id="MyBinder">
+<!-- 
          <div class="col-lg-12">
              <h1 class="page-header">Carpeta bonita</h1>
              <p> ORE NO KONO TE GA MAKKA NI MOERU. SHOURI WO TSUKAMETO TODOROKI SAKEBU.</p>
@@ -104,7 +104,9 @@
              <a href="http://www.mostcostly.com/wp-content/uploads/2011/08/costliest-yugioh-card-Dark-Magician-Girl.jpg">
                 <img  src="http://www.mostcostly.com/wp-content/uploads/2011/08/costliest-yugioh-card-Dark-Magician-Girl.jpg"  class="thumbnail " width="200" height="300" alt="Magician Girl">
              </a>
-         </div>
+         </div> -->
+     </div>
+     <div class="row" id="Products">
      </div>
    </div><!--container-->
       </div>
@@ -126,15 +128,15 @@
           <label class="control-label" for="select01">Collectible Type</label>
           <div class="controls">
             <select id="select01" class="form-control">
+               <option>Amiibo Figurine</option>
               <option>Vanguard Card</option>
               <option>Yu-gi-oh! Card</option>
-              <option>Amiibo Figurine</option>
             </select>
             </div>
             </div>
             <!--Drop bar-->
             <div class="control-group">
-              <label class="control-label" for="optionsCheckbox">Looking to:</label>
+              <label class="control-label" for="optionsCheckbox">Want to:</label>
               <div class="controls">
                 <label class="checkbox">
                   <input type="checkbox" id="optionsCheckbox" value="option1">
@@ -189,6 +191,34 @@ angular.module('AuthApp', [])
   $scope.scenario = 'Log in';
   $scope.currentUser = Parse.User.current();
 
+//   var NewBinder = new Parse.Object.extend("Binder");
+//   var AddBinder = new NewBinder();
+
+// AddBinder.save({
+//   name: "Los mejores Amiibos",
+//   description: "Todo aqui se vende o se cambia por dinero solamente",
+//   UserID: Parse.User.current()
+// }, {
+//   success: function(gameScore) {
+//     console.log("funciono")
+//   },
+//   error: function(gameScore, error) {
+//     console.log("no funciono")
+//   }
+// });
+
+//    window.LoadBinder = new Parse.Query("Binder");
+//    LoadBinder.count({userID:Parse.User.current()});
+
+//    // window.query = new Parse.Query("AmiibosData");
+//    // query.contains("Amiibo_name", $("#input01").val());
+//    // query.each(function(result){
+//    //  $("#thumbs").html($("#thumbs").html() + '<div class="col-lg-12">
+//    //           <h1 class="page-header">'+ +'</h1>
+//    //           <p> ORE NO KONO TE GA MAKKA NI MOERU. SHOURI WO TSUKAMETO TODOROKI SAKEBU.</p>
+//    //       </div>');
+//    // });
+
   $scope.logOut = function(form) {
     Parse.User.logOut();
     $scope.currentUser = null;
@@ -210,5 +240,16 @@ angular.module('AuthApp', [])
       }
 
     </script>
+    // <script>
+    //   function AddCards() {
+    //     window.query = new Parse.Query("AmiibosData");
+    //     query.contains("Amiibo_name", $("#input01").val());
+    //     query.each(function(result){
+    //       $("#thumbs").html($("#thumbs").html() + '<div class="col-xs-6 col-md-3 col-lg-4 thumb"><img class="thumbnail" width="50" height="75" src="' + result.attributes["Image_url"] +'" /></div>');
+    //     });
+    //   }
+
+    // </script>
+
 </body>
 </html>

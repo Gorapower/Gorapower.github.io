@@ -14,18 +14,10 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Jumbotron-->
        <link href="css/jumbotron-narrow.css" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 <title>User Log-in</title>
 </head>
 <body ng-app="AuthApp">
    <div class="container">
-    
-        <!--<h1 class="form-signin-heading"> MyBindr</h1>-->
     
   <div ng-hide="currentUser">    
     <form class="form-signin" ng-show="scenario == 'Log in'">
@@ -69,7 +61,9 @@ angular.module('AuthApp', [])
   $scope.currentUser = Parse.User.current();
   
   $scope.signUp = function(form) {
-    var user = new Parse.User();
+    if(form.password === form.confirm)
+    {
+      var user = new Parse.User();
     user.set("email", form.email);
     user.set("username", form.username);
     user.set("password", form.password);
@@ -81,9 +75,25 @@ angular.module('AuthApp', [])
         document.location.href = "index.html";
       },
       error: function(user, error) {
-        alert("Unable to sign up:  " + error.code + " " + error.message);
+        //alert("Unable to sign up:  " + error.code + " " + error.message);
       }
-    });    
+    });
+    }
+    // var user = new Parse.User();
+    // user.set("email", form.email);
+    // user.set("username", form.username);
+    // user.set("password", form.password);
+    
+    // user.signUp(null, {
+    //   success: function(user) {
+    //     $scope.currentUser = user;
+    //     $scope.$apply();
+    //     document.location.href = "index.html";
+    //   },
+    //   error: function(user, error) {
+    //     alert("Unable to sign up:  " + error.code + " " + error.message);
+    //   }
+    // });    
   };
   
   $scope.logIn = function(form) {
