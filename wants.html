@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-    <script src="https://www.parsecdn.com/js/parse-1.2.12.min.js"></script>
+    <script src="https://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-    <script src="http://www.parsecdn.com/js/parse-1.2.12.min.js"></script>
+    <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
     <link href="css/offcanvas.css" rel="stylesheet">
 
     <!-- Bootstrap -->
@@ -58,7 +58,7 @@
          <div class="col-lg-12">
              <h1 class="page-header">Wants</h1>
              <p>Write what you are looking for:</p>
-             <textarea  CLASS="foo" rows="20" cols="135">Some shit mang.</textarea>
+             <textarea  CLASS="foo" rows="20" cols="135" id="WantsTextArea"></textarea>
              
              <style>
                  textarea.foo
@@ -68,7 +68,7 @@
 
              </style>
              
-             <a class="btn btn-primary" href="#" onclick="">Save</a>
+             <a class="btn btn-primary" onclick="SaveData">Save</a>
       </div>
   
        
@@ -80,21 +80,17 @@
     <script type="text/javascript">
         Parse.initialize("8aaaoh6a5ZkjO5SIzzVVtUsFjDBcKsSdUP9lcoIl", "8YxX1Lyyp1iIBE5YEDIZnD8qzRhUg7y1AaSZkTmm");
 
+        window.query = new Parse.Query("Wants");
+        query.contains("userName", Parse.User.current().attributes["username"]);
+        query.each(function(result){
+          document.getElementById("WantsTextArea").value = result.attributes["textWants"];
+          });
+
 
 angular.module('AuthApp', [])
 .run(['$rootScope', function($scope) {
   $scope.scenario = 'Log in';
   $scope.currentUser = Parse.User.current();
-
-
-   window.LoadBinder = new Parse.Query("Binder");
-   LoadBinder.contains("Owner", Parse.User.current().attributes["username"]);
-   LoadBinder.each(function(result){
-    $("#thumbs").html($("#thumbs").html() + '<div class="col-lg-12">
-             <h1 class="page-header">'+ result.attributes["Name"]+'</h1>
-             <p> '+ result.attributes["description"]+'</p>
-         </div>');
-   });
 
   $scope.logOut = function(form) {
     Parse.User.logOut();
@@ -107,22 +103,16 @@ angular.module('AuthApp', [])
 
     <script>
 
-      function searchImages() {
-        $("#thumbs").html("");
-        window.query = new Parse.Query("AmiibosData");
-        query.contains("Amiibo_name", $("#input01").val());
-        query.each(function(result){
-          $("#thumbs").html($("#thumbs").html() + '<div class="col-xs-6 col-md-3 col-lg-4 thumb"><img class="thumbnail" width="50" height="75" src="' + result.attributes["Image_url"] +'" onclick="AddCards(this.src)"/></div>');
-        });
+      function SaveData() {
+        window.wants = Parse.Object("Wants");
+        wants.save({
+          nameUser: Parse.User.current().attributes["username"],
+          textWants: $("#WantsTextArea").val()
+});
       }
 
     </script>
-    <script>
-      function AddCards(_src) {
-          $("#MyBinder").html($("#MyBinder").html() + '<div class="col-xs-6 col-md-3 col-lg-4 thumb"><img class="thumbnail" width="200" height="300" src="' + _src+'" onclick="AddCards(this.src)"/></div>');
-      }
-
-    </script>
+ 
 
 </body>
 </html>
