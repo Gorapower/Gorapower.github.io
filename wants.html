@@ -110,6 +110,10 @@ angular.module('AuthApp', [])
           textWants: $("#WantsTextArea").val()
 });
       }
+      if(!Parse.Session.isCurrentSessionRevocable())
+        {
+          window.location="index.html";
+        }
 
     </script>
  
