@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="https://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+    <link href="css/offcanvas.css" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Jumbotron-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<title>MyBindr - Settings</title>
+</head>
+<body ng-app="AuthApp">
+   <div class="container">
+       <nav class="navbar navbar-default">
+           <div class="container-fluid">
+               <div class="navbar-header">
+                   <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-console "navbar">
+                       <span class="sr-only">Toggle navigation</span>
+                       <span class="icon-bar"></span>
+                       <span class="icon-bar"></span>
+                       <span class="icon-bar"></span>
+                   </button>
+                   <a class="navbar-brand" href="index.html">Home</a>
+               </div>
+               <div id="navbar" class="navbar-collapse collapse">
+                   <ul class="nav navbar-nav">
+                       <li ><a href="bindr.html">Bindr</a></li>
+                       <li ><a href="wants.html">Wants</a></li>
+                       <li><a>Notifications</a></li>
+                       <li class="active" ><a href="settings.html">Settings</a></li>
+                   </ul>
+                   <ul class="nav navbar-nav navbar-right">
+                       <li class="active"><a>Log out</a></li>
+                   </ul>
+               </div>
+           </div>
+       </nav>
+       
+       <div class="jumbotron">
+           <!-- Image grid-->
+           <div class="container">
+
+     <div class="row" id="MyBinder">
+
+         <div class="col-lg-12">
+             <h1 class="page-header">Settings</h1>
+             <p>Username: <input type="text" name="fusername"></p>
+             <p>Password: <input type="text" name="fpassword"></p>
+             <p>New Password: <input type="text" name="fpassword2"></p> 
+             <p>Otravez pl0x: <input type="text" name="fpassword3"></p>
+             
+             <p>Search-bar Enable user search:      
+                <input type="radio" name="usersearch" value="Yes"> Yes
+                <input type="radio" name="usersearch" value="No"> No
+             </p>
+      </div>
+  
+       
+ </div>
+      <!--Container-->
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+    <script type="text/javascript">
+        Parse.initialize("8aaaoh6a5ZkjO5SIzzVVtUsFjDBcKsSdUP9lcoIl", "8YxX1Lyyp1iIBE5YEDIZnD8qzRhUg7y1AaSZkTmm");
+
+        window.query = new Parse.Query("Wants");
+        query.contains("userName", Parse.User.current().attributes["username"]);
+        query.each(function(result){
+          document.getElementById("WantsTextArea").value = result.attributes["textWants"];
+          });
+
+
+angular.module('AuthApp', [])
+.run(['$rootScope', function($scope) {
+  $scope.scenario = 'Log in';
+  $scope.currentUser = Parse.User.current();
+
+  $scope.logOut = function(form) {
+    Parse.User.logOut();
+    $scope.currentUser = null;
+  };
+}]);
+
+    </script>
+
+
+    <script>
+
+      function SaveData() {
+        window.wants = Parse.Object("Wants");
+        wants.save({
+          nameUser: Parse.User.current().attributes["username"],
+          textWants: $("#WantsTextArea").val()
+      
+});
+      }
+
+    </script>
+
+ 
+
+</body>
+</html>
