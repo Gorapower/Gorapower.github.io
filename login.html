@@ -61,6 +61,17 @@ angular.module('AuthApp', [])
   $scope.currentUser = Parse.User.current();
   
   $scope.signUp = function(form) {
+     function ValidateEmail()   
+{  
+ if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.email))  
+  {  
+    return (true)  
+  }  
+    alert("You have entered an invalid email address!")  
+    return (false)  
+}  
+
+    if(ValidateEmail()){
     if(form.password === form.confirm)
     {
       var user = new Parse.User();
@@ -79,6 +90,10 @@ angular.module('AuthApp', [])
       }
     });
     }
+    else{
+      alert("Tu password no coinside con la confirmacion");
+    }
+  }
     // var user = new Parse.User();
     // user.set("email", form.email);
     // user.set("username", form.username);
