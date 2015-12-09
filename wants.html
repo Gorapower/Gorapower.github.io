@@ -5,21 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-    <script src="https://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+     <!--<script src="https://www.parsecdn.com/js/parse-1.6.7.min.js"></script> -->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
     <link href="css/offcanvas.css" rel="stylesheet">
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- Jumbotron-->
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 <title>MyBindr - Wants</title>
 </head>
 <body ng-app="AuthApp">
@@ -39,8 +31,7 @@
                    <ul class="nav navbar-nav">
                        <li ><a href="bindr.html">Bindr</a></li>
                        <li class="active"><a href="wants.html">Wants</a></li>
-                       <li><a>Notifications</a></li>
-                       <li><a>Settings</a></li>
+                       <li><a href="settings.html">Settings</a></li>
                    </ul>
                    <ul class="nav navbar-nav navbar-right">
                        <li class="active"><a>Log out</a></li>
@@ -77,20 +68,47 @@
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
+
+
     <script type="text/javascript">
         Parse.initialize("8aaaoh6a5ZkjO5SIzzVVtUsFjDBcKsSdUP9lcoIl", "8YxX1Lyyp1iIBE5YEDIZnD8qzRhUg7y1AaSZkTmm");
 
-        window.query = new Parse.Query("Wants");
-        query.contains("userName", Parse.User.current().attributes["username"]);
-        query.each(function(result){
-          document.getElementById("WantsTextArea").value = result.attributes["textWants"];
-          });
+
 
 
 angular.module('AuthApp', [])
 .run(['$rootScope', function($scope) {
   $scope.scenario = 'Log in';
   $scope.currentUser = Parse.User.current();
+
+
+        // window.query = new Parse.Query("Wants");
+        // query.contains("userName", Parse.User.current().attributes["username"]);
+        //   document.getElementById("WantsTextArea").value = query.attributes["textWants"];
+//         function readTextFile(file){
+//     var rawFile = new XMLHttpRequest();
+//     rawFile.open("GET", file, false);
+//     rawFile.onreadystatechange = function ()
+//     {
+//         if(rawFile.readyState === 4)
+//         {
+//             if(rawFile.status === 200 || rawFile.status == 0)
+//             {
+//                 var allText = rawFile.responseText;
+//                 document.getElementById("WantsTextArea").value = allText;
+//             }
+//         }
+//     }
+//     rawFile.send(null);
+// }
+// readTextFile("file://"+Parse.User.current().attributes["username"]+".txt");
+// $http({
+//   url:'http://bindrapi.herokuapp.com/api/amiibos', 
+//   method: "GET",
+//   data: {user_id: user.id, draft: true}
+//  });
+// };
+
 
   $scope.logOut = function(form) {
     Parse.User.logOut();
